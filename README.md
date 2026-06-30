@@ -12,6 +12,7 @@ Boas Práticas de Programação.
 - [x] Consulta de código inexistente
 - [x] Tratamento de opção inválida
 - [x] Encerramento do programa
+- [x] Adição de novas aves
 ## Como executar
 ```bash
 python avedex.py

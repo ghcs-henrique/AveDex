@@ -82,6 +82,22 @@ catalogo_aves = [
         "habitat": "Campos, cidades e áreas rurais",
         "alimentacao": "Insetos e outros pequenos invertebrados",
         "curiosidade": "Constrói um ninho de barro característico."
+    },
+    {
+        "codigo": "4",
+        "nome_popular": "Arara-azul",
+        "nome_cientifico": "Anodorhynchus hyacinthinus",
+        "habitat": "Florestas, cerrado e áreas abertas do Pantanal",
+        "alimentacao": "Frutos, sementes e castanhas (principalmente de palmeiras)",
+        "curiosidade": "É a maior espécie de arara do mundo e possui um bico extremamente forte para quebrar cocos."    
+    },
+    {
+        "codigo": "5",
+        "nome_popular": "Coruja-buraqueira",
+        "nome_cientifico": "Athene cunicularia",
+        "habitat": "Campos abertos, pastagens e áreas urbanas",
+        "alimentacao": "Insetos, pequenos roedores e répteis",
+        "curiosidade": "Diferente da maioria das corujas, vive em buracos no solo e costuma ser ativa durante o dia."
     }
 ]
 
