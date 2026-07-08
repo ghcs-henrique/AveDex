@@ -24,7 +24,16 @@ Boas Práticas de Programação.
 - [x] Encerramento do programa
 - [x] Adição de novas aves
 - [x] Verificação de resultados na busca
-
+- [x] Comparação entre duas aves existentes
+- [x] Comparação exibindo família, dieta e habitat
+- [x] Comparação exibindo peso e comprimento
+- [x] Comparação exibindo status e índice de conservação
+- [x] Tratamento de ID inexistente na comparação
+- [x] Comparação da mesma ave com ela mesma
+- [x] Opção inválida no menu
 ## Como executar
 ```bash
 python avedex.py
+
+## Autor
+Guilherme Henrique

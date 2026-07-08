@@ -7,13 +7,14 @@ def exibir_linha():
 
 def exibir_menu():
     print()
-    exibir_linha()
+    print("=" * 50)
     print("AVEDEX - MENU PRINCIPAL")
-    exibir_linha()
+    print("=" * 50)
     print("1 - Listar aves")
     print("2 - Buscar ave")
     print("3 - Ver detalhes de uma ave")
-    print("4 - Sobre a AveDex")
+    print("4 - Comparar duas aves")
+    print("5 - Sobre a AveDex")
     print("0 - Sair")
 
 
@@ -207,6 +208,30 @@ def mostrar_sobre():
     print("O projeto evolui durante a disciplina de Boas Práticas.")
 
 
+def escolher_ave(catalogo, mensagem):
+    listar_aves(catalogo)
+    id_escolhido = input(f"\n{mensagem}: ").strip()
+    ave_encontrada = buscar_ave_por_codigo(catalogo, id_escolhido)
+    if ave_encontrada is None:
+        print("Ave não encontrada. Confira o ID informado.")
+        return None
+
+    return ave_encontrada
+
+def comparar_duas_aves(catalogo):
+    print()
+    print("Escolha a primeira ave")
+    ave_1 = escolher_ave(catalogo, "Digite o ID da primeira ave")
+    if ave_1 is None:
+        return
+
+    print()
+    print("Escolha a segunda ave")
+    ave_2 = escolher_ave(catalogo, "Digite o ID da segunda ave")
+    if ave_2 is None:
+        return
+    exibir_comparacao_aves(ave_1, ave_2)
+
 def pausar():
     input("\nPressione ENTER para voltar ao menu...")
 
@@ -319,37 +344,51 @@ catalogo_aves = [
     }
 ]
 
-print("=" * 50)
-print(" AVEDEX")
-print("=" * 50)
+def main():
+    print("=" * 50)
+    print(" AVEDEX")
+    print("=" * 50)
 
-nome_usuario = input("Digite seu nome: ").strip()
+    try:
+        nome_usuario = input("Digite seu nome: ").strip()
+    except EOFError:
+        print("\nEntrada encerrada. Encerrando a AveDex.")
+        return
 
-opcao_menu = ""
+    opcao_menu = ""
 
-while opcao_menu != "0":
-    exibir_menu()
-    opcao_menu = input("Escolha uma opção: ").strip()
-    print()
+    while opcao_menu != "0":
+        try:
+            exibir_menu()
+            opcao_menu = input("Escolha uma opção: ").strip()
+        except EOFError:
+            print("\nEntrada encerrada. Encerrando a AveDex.")
+            break
+        print()
 
-    if opcao_menu == "1":
-        listar_aves(catalogo_aves)
+        if opcao_menu == "1":
+            listar_aves(catalogo_aves)
+        elif opcao_menu == "2":
+            tela_busca(catalogo_aves)
+        elif opcao_menu == "3":
+            selecionar_ave_por_id(catalogo_aves)
+        elif opcao_menu == "4":
+            comparar_duas_aves(catalogo_aves)
+        elif opcao_menu == "5":
+            print("A AveDex é um catálogo interativo de aves.")
+            print("Em breve, teremos batalha, imagens, sons e dados em arquivo JSON.")
+        elif opcao_menu == "0":
+            print("Encerrando a AveDex. Até logo!")
+        else:
+            print("Opção inválida. Digite apenas 0, 1, 2, 3, 4 ou 5.")
 
-    elif opcao_menu == "2":
-        tela_busca(catalogo_aves)
+        if opcao_menu != "0":
+            try:
+                pausar()
+            except EOFError:
+                print("\nEntrada encerrada. Encerrando a AveDex.")
+                break
 
-    elif opcao_menu == "3":
-        selecionar_ave_por_id(catalogo_aves)
 
-    elif opcao_menu == "4":
-        mostrar_sobre()
-
-    elif opcao_menu == "0":
-        print("Encerrando a AveDex.")
-        print(f"Até logo, {nome_usuario}!")
-
-    else:
-        print("Opção inválida.")
-
-    if opcao_menu != "0":
-        pausar()
+if __name__ == "__main__":
+    main()
