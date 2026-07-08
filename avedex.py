@@ -60,7 +60,6 @@ def normalizar_texto(texto):
     return texto
 
 
-# 🆕 ETAPA 2 — VALORES AUSENTES
 def valor_ou_indisponivel(valor, unidade=""):
     if valor is None or valor == "":
         return "Não informado"
@@ -69,6 +68,56 @@ def valor_ou_indisponivel(valor, unidade=""):
         return f"{valor} {unidade}"
 
     return str(valor)
+
+
+def imprimir_linha_comparacao(rotulo, valor_1, valor_2):
+    print(f"{rotulo:<18} | {str(valor_1):<25} | {str(valor_2):<25}")
+
+
+
+def exibir_comparacao_aves(ave_1, ave_2):
+    print()
+    print("=" * 78)
+    print("COMPARAÇÃO ENTRE AVES")
+    print("=" * 78)
+
+    imprimir_linha_comparacao("Campo", ave_1["nome_popular"], ave_2["nome_popular"])
+
+    print("-" * 78)
+
+    imprimir_linha_comparacao("Nome científico", ave_1.get("nome_cientifico"), ave_2.get("nome_cientifico"))
+    imprimir_linha_comparacao("Ordem", ave_1.get("ordem"), ave_2.get("ordem"))
+    imprimir_linha_comparacao("Família", ave_1.get("familia"), ave_2.get("familia"))
+    imprimir_linha_comparacao("Dieta", ave_1.get("dieta_tipo"), ave_2.get("dieta_tipo"))
+    imprimir_linha_comparacao("Habitat", ave_1.get("habitat"), ave_2.get("habitat"))
+    imprimir_linha_comparacao("Alimentação", ave_1.get("alimentacao"), ave_2.get("alimentacao"))
+    imprimir_linha_comparacao("Curiosidade", ave_1.get("curiosidade"), ave_2.get("curiosidade"))
+
+    print("-" * 78)
+
+    imprimir_linha_comparacao(
+        "Comprimento",
+        valor_ou_indisponivel(ave_1.get("comprimento_cm"), "cm"),
+        valor_ou_indisponivel(ave_2.get("comprimento_cm"), "cm")
+    )
+
+    imprimir_linha_comparacao(
+        "Peso",
+        valor_ou_indisponivel(ave_1.get("peso_g"), "g"),
+        valor_ou_indisponivel(ave_2.get("peso_g"), "g")
+    )
+
+    imprimir_linha_comparacao(
+        "Conservação",
+        valor_ou_indisponivel(ave_1.get("status_conservacao")),
+        valor_ou_indisponivel(ave_2.get("status_conservacao"))
+    )
+
+    imprimir_linha_comparacao(
+        "Índice",
+        valor_ou_indisponivel(ave_1.get("indice_conservacao")),
+        valor_ou_indisponivel(ave_2.get("indice_conservacao"))
+    )
 
 
 def buscar_aves(catalogo, termo_busca):
@@ -146,7 +195,6 @@ def exibir_detalhes(ave):
     print(f"Alimentação: {ave['alimentacao']}")
     print(f"Curiosidade: {ave['curiosidade']}")
 
-    # 🆕 ETAPA 2 aplicada aqui
     print(f"Comprimento (cm): {valor_ou_indisponivel(ave.get('comprimento_cm'), 'cm')}")
     print(f"Peso (g): {valor_ou_indisponivel(ave.get('peso_g'), 'g')}")
     print(f"Status de conservação: {valor_ou_indisponivel(ave.get('status_conservacao'))}")
