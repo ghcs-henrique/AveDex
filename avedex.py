@@ -1,3 +1,6 @@
+import unicodedata
+
+
 def exibir_linha():
     print("=" * 50)
 
@@ -37,13 +40,29 @@ def buscar_ave_por_codigo(catalogo, codigo_procurado):
     return None
 
 
-# ✅ NOVA FUNÇÃO ADICIONADA
+# 🔧 NORMALIZAÇÃO DE TEXTO (COM A CENTRAIS DA SUA ATIVIDADE)
+def normalizar_texto(texto):
+    texto = str(texto)
+    texto = texto.lower().strip()
+
+    texto = unicodedata.normalize("NFD", texto)
+
+    texto = "".join(
+        caractere for caractere in texto
+        if unicodedata.category(caractere) != "Mn"
+    )
+
+    return texto
+
+
+# 🔍 BUSCA MELHORADA COM NORMALIZAÇÃO
 def buscar_aves_por_nome(catalogo, termo_busca):
     resultados = []
 
+    termo = normalizar_texto(termo_busca)
+
     for ave in catalogo:
-        nome = ave["nome_popular"].lower()
-        termo = termo_busca.lower()
+        nome = normalizar_texto(ave["nome_popular"])
 
         if termo in nome:
             resultados.append(ave)
@@ -156,13 +175,12 @@ while opcao_menu != "0":
         else:
             print("Ave não encontrada. Confira o código informado.")
 
-    # 🆕 NOVA OPÇÃO DE BUSCA POR NOME
     elif opcao_menu == "4":
         termo = input("Digite o nome ou parte do nome da ave: ").strip()
 
         resultados = buscar_aves_por_nome(catalogo_aves, termo)
 
-        if len(resultados) > 0:
+        if resultados:
             print("\nAVES ENCONTRADAS:")
             for ave in resultados:
                 print(f"{ave['codigo']} - {ave['nome_popular']}")
