@@ -13,7 +13,7 @@ def exibir_menu():
     print("1 - Ver mensagem de boas-vindas")
     print("2 - Listar aves")
     print("3 - Ver detalhes de uma ave (por código)")
-    print("4 - Buscar aves (busca avançada)")
+    print("4 - Buscar aves")
     print("5 - Sobre a AveDex")
     print("0 - Sair")
 
@@ -41,12 +41,11 @@ def buscar_ave_por_codigo(catalogo, codigo_procurado):
 
 
 def normalizar_texto(texto):
-    texto = str(texto)
-    texto = texto.lower().strip()
+    texto = str(texto).lower().strip()
     texto = unicodedata.normalize("NFD", texto)
     texto = "".join(
-        caractere for caractere in texto
-        if unicodedata.category(caractere) != "Mn"
+        c for c in texto
+        if unicodedata.category(c) != "Mn"
     )
     return texto
 
@@ -87,6 +86,29 @@ def exibir_resultados_busca(resultados):
                 f"{ave['codigo']} - {ave['nome_popular']} "
                 f"({ave.get('familia', 'N/A')}, {ave.get('dieta_tipo', 'N/A')})"
             )
+
+
+def tela_busca(catalogo):
+    termo = input("Digite parte do nome, família, ordem ou dieta: ").strip()
+
+    if termo == "":
+        print("Digite algum texto para realizar a busca.")
+        return
+
+    resultados = buscar_aves(catalogo, termo)
+
+    exibir_resultados_busca(resultados)
+
+    if len(resultados) > 0:
+        escolha = input("\nDigite o código da ave para ver detalhes ou ENTER para voltar: ").strip()
+
+        if escolha != "":
+            ave = buscar_ave_por_codigo(resultados, escolha)
+
+            if ave is None:
+                print("ID não encontrado nos resultados.")
+            else:
+                exibir_detalhes(ave)
 
 
 def exibir_detalhes(ave):
@@ -203,10 +225,7 @@ while opcao_menu != "0":
             print("Ave não encontrada.")
 
     elif opcao_menu == "4":
-        termo = input("Digite sua busca: ").strip()
-        resultados = buscar_aves(catalogo_aves, termo)
-
-        exibir_resultados_busca(resultados)
+        tela_busca(catalogo_aves)
 
     elif opcao_menu == "5":
         mostrar_sobre()
