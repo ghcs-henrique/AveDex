@@ -13,7 +13,7 @@ def exibir_menu():
     print("1 - Ver mensagem de boas-vindas")
     print("2 - Listar aves")
     print("3 - Ver detalhes de uma ave (por código)")
-    print("4 - Buscar aves por nome")
+    print("4 - Buscar aves (busca avançada)")
     print("5 - Sobre a AveDex")
     print("0 - Sair")
 
@@ -40,7 +40,7 @@ def buscar_ave_por_codigo(catalogo, codigo_procurado):
     return None
 
 
-# 🔧 NORMALIZAÇÃO DE TEXTO (COM A CENTRAIS DA SUA ATIVIDADE)
+# 🔧 NORMALIZAÇÃO DE TEXTO
 def normalizar_texto(texto):
     texto = str(texto)
     texto = texto.lower().strip()
@@ -55,16 +55,26 @@ def normalizar_texto(texto):
     return texto
 
 
-# 🔍 BUSCA MELHORADA COM NORMALIZAÇÃO
-def buscar_aves_por_nome(catalogo, termo_busca):
+# 🔍 NOVA BUSCA MULTICAMPOS (ETAPA 4)
+def buscar_aves(catalogo, termo_busca):
     resultados = []
 
     termo = normalizar_texto(termo_busca)
 
     for ave in catalogo:
-        nome = normalizar_texto(ave["nome_popular"])
 
-        if termo in nome:
+        campos_busca = [
+            ave.get("nome_popular", ""),
+            ave.get("nome_cientifico", ""),
+            ave.get("familia", ""),
+            ave.get("ordem", ""),
+            ave.get("dieta_tipo", "")
+        ]
+
+        texto_busca = " ".join(campos_busca)
+        texto_busca = normalizar_texto(texto_busca)
+
+        if termo in texto_busca:
             resultados.append(ave)
 
     return resultados
@@ -100,6 +110,9 @@ catalogo_aves = [
         "codigo": "1",
         "nome_popular": "Bem-te-vi",
         "nome_cientifico": "Pitangus sulphuratus",
+        "ordem": "Passeriformes",
+        "familia": "Tyrannidae",
+        "dieta_tipo": "Insetívora e frugívora",
         "habitat": "Áreas abertas, cidades e bordas de florestas",
         "alimentacao": "Insetos, frutos e pequenos animais",
         "curiosidade": "Seu canto lembra a expressão bem-te-vi."
@@ -119,25 +132,34 @@ catalogo_aves = [
         "codigo": "3",
         "nome_popular": "João-de-barro",
         "nome_cientifico": "Furnarius rufus",
+        "ordem": "Passeriformes",
+        "familia": "Furnariidae",
+        "dieta_tipo": "Insetívora",
         "habitat": "Campos, cidades e áreas rurais",
-        "alimentacao": "Insetos e outros pequenos invertebrados",
+        "alimentacao": "Insetos e outros invertebrados",
         "curiosidade": "Constrói um ninho de barro característico."
     },
     {
         "codigo": "4",
         "nome_popular": "Arara-azul",
         "nome_cientifico": "Anodorhynchus hyacinthinus",
-        "habitat": "Florestas, cerrado e áreas abertas do Pantanal",
-        "alimentacao": "Frutos, sementes e castanhas (principalmente de palmeiras)",
-        "curiosidade": "É a maior espécie de arara do mundo e possui um bico extremamente forte para quebrar cocos."
+        "ordem": "Psittaciformes",
+        "familia": "Psittacidae",
+        "dieta_tipo": "Frugívora",
+        "habitat": "Florestas, cerrado e Pantanal",
+        "alimentacao": "Frutos, sementes e castanhas",
+        "curiosidade": "É a maior espécie de arara do mundo."
     },
     {
         "codigo": "5",
         "nome_popular": "Coruja-buraqueira",
         "nome_cientifico": "Athene cunicularia",
-        "habitat": "Campos abertos, pastagens e áreas urbanas",
-        "alimentacao": "Insetos, pequenos roedores e répteis",
-        "curiosidade": "Diferente da maioria das corujas, vive em buracos no solo e costuma ser ativa durante o dia."
+        "ordem": "Strigiformes",
+        "familia": "Strigidae",
+        "dieta_tipo": "Carnívora",
+        "habitat": "Campos abertos e áreas urbanas",
+        "alimentacao": "Insetos e pequenos vertebrados",
+        "curiosidade": "Vive em buracos no solo e é ativa durante o dia."
     }
 ]
 
@@ -165,20 +187,17 @@ while opcao_menu != "0":
 
         codigo_escolhido = input("\nDigite o código da ave: ").strip()
 
-        ave_encontrada = buscar_ave_por_codigo(
-            catalogo_aves,
-            codigo_escolhido
-        )
+        ave_encontrada = buscar_ave_por_codigo(catalogo_aves, codigo_escolhido)
 
-        if ave_encontrada is not None:
+        if ave_encontrada:
             exibir_detalhes(ave_encontrada)
         else:
-            print("Ave não encontrada. Confira o código informado.")
+            print("Ave não encontrada.")
 
     elif opcao_menu == "4":
-        termo = input("Digite o nome ou parte do nome da ave: ").strip()
+        termo = input("Digite sua busca: ").strip()
 
-        resultados = buscar_aves_por_nome(catalogo_aves, termo)
+        resultados = buscar_aves(catalogo_aves, termo)
 
         if resultados:
             print("\nAVES ENCONTRADAS:")
@@ -195,7 +214,7 @@ while opcao_menu != "0":
         print(f"Até logo, {nome_usuario}!")
 
     else:
-        print("Opção inválida. Digite apenas 0, 1, 2, 3, 4 ou 5.")
+        print("Opção inválida.")
 
     if opcao_menu != "0":
         pausar()
