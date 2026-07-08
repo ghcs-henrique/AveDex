@@ -9,8 +9,9 @@ def exibir_menu():
     exibir_linha()
     print("1 - Ver mensagem de boas-vindas")
     print("2 - Listar aves")
-    print("3 - Ver detalhes de uma ave")
-    print("4 - Sobre a AveDex")
+    print("3 - Ver detalhes de uma ave (por código)")
+    print("4 - Buscar aves por nome")
+    print("5 - Sobre a AveDex")
     print("0 - Sair")
 
 
@@ -34,6 +35,20 @@ def buscar_ave_por_codigo(catalogo, codigo_procurado):
         if ave["codigo"] == codigo_procurado:
             return ave
     return None
+
+
+# ✅ NOVA FUNÇÃO ADICIONADA
+def buscar_aves_por_nome(catalogo, termo_busca):
+    resultados = []
+
+    for ave in catalogo:
+        nome = ave["nome_popular"].lower()
+        termo = termo_busca.lower()
+
+        if termo in nome:
+            resultados.append(ave)
+
+    return resultados
 
 
 def exibir_detalhes(ave):
@@ -141,7 +156,20 @@ while opcao_menu != "0":
         else:
             print("Ave não encontrada. Confira o código informado.")
 
+    # 🆕 NOVA OPÇÃO DE BUSCA POR NOME
     elif opcao_menu == "4":
+        termo = input("Digite o nome ou parte do nome da ave: ").strip()
+
+        resultados = buscar_aves_por_nome(catalogo_aves, termo)
+
+        if len(resultados) > 0:
+            print("\nAVES ENCONTRADAS:")
+            for ave in resultados:
+                print(f"{ave['codigo']} - {ave['nome_popular']}")
+        else:
+            print("Nenhuma ave encontrada.")
+
+    elif opcao_menu == "5":
         mostrar_sobre()
 
     elif opcao_menu == "0":
@@ -149,7 +177,7 @@ while opcao_menu != "0":
         print(f"Até logo, {nome_usuario}!")
 
     else:
-        print("Opção inválida. Digite apenas 0, 1, 2, 3 ou 4.")
+        print("Opção inválida. Digite apenas 0, 1, 2, 3, 4 ou 5.")
 
     if opcao_menu != "0":
         pausar()
