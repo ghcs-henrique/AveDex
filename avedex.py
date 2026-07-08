@@ -200,7 +200,30 @@ catalogo_aves = [
         "habitat": "Campos abertos e áreas urbanas",
         "alimentacao": "Insetos e pequenos vertebrados",
         "curiosidade": "Vive em buracos no solo e é ativa durante o dia."
+    },
+    {
+    "codigo": "6",
+    "nome_popular": "Sabiá-laranjeira",
+    "nome_cientifico": "Turdus rufiventris",
+    "ordem": "Passeriformes",
+    "familia": "Turdidae",
+    "dieta_tipo": "Onívora",
+    "habitat": "Florestas, áreas urbanas, jardins e parques",
+    "alimentacao": "Frutas, insetos e pequenos invertebrados",
+    "curiosidade": "É considerado o pássaro símbolo do Brasil."
+    },
+    {
+    "codigo": "7",
+    "nome_popular": "Tico-tico",
+    "nome_cientifico": "Zonotrichia capensis",
+    "ordem": "Passeriformes",
+    "familia": "Passerellidae",
+    "dieta_tipo": "Granívora",
+    "habitat": "Campos, jardins, áreas abertas e cidades",
+    "alimentacao": "Sementes, insetos e pequenos frutos",
+    "curiosidade": "Muito comum no Brasil e conhecido pelo canto repetitivo."
     }
+
 ]
 
 print("=" * 50)
