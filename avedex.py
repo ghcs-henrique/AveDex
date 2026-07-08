@@ -40,25 +40,19 @@ def buscar_ave_por_codigo(catalogo, codigo_procurado):
     return None
 
 
-# 🔧 NORMALIZAÇÃO DE TEXTO
 def normalizar_texto(texto):
     texto = str(texto)
     texto = texto.lower().strip()
-
     texto = unicodedata.normalize("NFD", texto)
-
     texto = "".join(
         caractere for caractere in texto
         if unicodedata.category(caractere) != "Mn"
     )
-
     return texto
 
 
-# 🔍 NOVA BUSCA MULTICAMPOS (ETAPA 4)
 def buscar_aves(catalogo, termo_busca):
     resultados = []
-
     termo = normalizar_texto(termo_busca)
 
     for ave in catalogo:
@@ -71,13 +65,28 @@ def buscar_aves(catalogo, termo_busca):
             ave.get("dieta_tipo", "")
         ]
 
-        texto_busca = " ".join(campos_busca)
-        texto_busca = normalizar_texto(texto_busca)
+        texto_busca = normalizar_texto(" ".join(campos_busca))
 
         if termo in texto_busca:
             resultados.append(ave)
 
     return resultados
+
+
+def exibir_resultados_busca(resultados):
+    print()
+    exibir_linha()
+    print("RESULTADOS DA BUSCA")
+    exibir_linha()
+
+    if len(resultados) == 0:
+        print("Nenhuma ave encontrada.")
+    else:
+        for ave in resultados:
+            print(
+                f"{ave['codigo']} - {ave['nome_popular']} "
+                f"({ave.get('familia', 'N/A')}, {ave.get('dieta_tipo', 'N/A')})"
+            )
 
 
 def exibir_detalhes(ave):
@@ -185,26 +194,19 @@ while opcao_menu != "0":
     elif opcao_menu == "3":
         listar_aves(catalogo_aves)
 
-        codigo_escolhido = input("\nDigite o código da ave: ").strip()
+        codigo = input("\nDigite o código da ave: ").strip()
+        ave = buscar_ave_por_codigo(catalogo_aves, codigo)
 
-        ave_encontrada = buscar_ave_por_codigo(catalogo_aves, codigo_escolhido)
-
-        if ave_encontrada:
-            exibir_detalhes(ave_encontrada)
+        if ave:
+            exibir_detalhes(ave)
         else:
             print("Ave não encontrada.")
 
     elif opcao_menu == "4":
         termo = input("Digite sua busca: ").strip()
-
         resultados = buscar_aves(catalogo_aves, termo)
 
-        if resultados:
-            print("\nAVES ENCONTRADAS:")
-            for ave in resultados:
-                print(f"{ave['codigo']} - {ave['nome_popular']}")
-        else:
-            print("Nenhuma ave encontrada.")
+        exibir_resultados_busca(resultados)
 
     elif opcao_menu == "5":
         mostrar_sobre()
