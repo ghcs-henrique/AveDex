@@ -43,6 +43,9 @@ def exibir_detalhes(ave):
     exibir_linha()
     print(f"Nome popular: {ave['nome_popular']}")
     print(f"Nome científico: {ave['nome_cientifico']}")
+    print(f"Ordem: {ave.get('ordem', 'N/A')}")
+    print(f"Família: {ave.get('familia', 'N/A')}")
+    print(f"Dieta: {ave.get('dieta_tipo', 'N/A')}")
     print(f"Habitat: {ave['habitat']}")
     print(f"Alimentação: {ave['alimentacao']}")
     print(f"Curiosidade: {ave['curiosidade']}")
@@ -71,9 +74,12 @@ catalogo_aves = [
         "codigo": "2",
         "nome_popular": "Canário-da-terra",
         "nome_cientifico": "Sicalis flaveola",
+        "ordem": "Passeriformes",
+        "familia": "Thraupidae",
+        "dieta_tipo": "Granívora",
         "habitat": "Campos, áreas abertas e ambientes rurais",
         "alimentacao": "Sementes e pequenos insetos",
-        "curiosidade": "O macho possui plumagem amarela intensa."
+        "curiosidade": "Possui canto forte e melodioso."
     },
     {
         "codigo": "3",
@@ -89,7 +95,7 @@ catalogo_aves = [
         "nome_cientifico": "Anodorhynchus hyacinthinus",
         "habitat": "Florestas, cerrado e áreas abertas do Pantanal",
         "alimentacao": "Frutos, sementes e castanhas (principalmente de palmeiras)",
-        "curiosidade": "É a maior espécie de arara do mundo e possui um bico extremamente forte para quebrar cocos."    
+        "curiosidade": "É a maior espécie de arara do mundo e possui um bico extremamente forte para quebrar cocos."
     },
     {
         "codigo": "5",
