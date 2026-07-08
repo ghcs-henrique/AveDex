@@ -155,7 +155,11 @@ catalogo_aves = [
         "dieta_tipo": "Insetívora e frugívora",
         "habitat": "Áreas abertas, cidades e bordas de florestas",
         "alimentacao": "Insetos, frutos e pequenos animais",
-        "curiosidade": "Seu canto lembra a expressão bem-te-vi."
+        "curiosidade": "Seu canto lembra a expressão bem-te-vi.",
+        "comprimento_cm": 23,
+        "peso_g": 68,
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1
     },
     {
         "codigo": "2",
@@ -166,7 +170,11 @@ catalogo_aves = [
         "dieta_tipo": "Granívora",
         "habitat": "Campos, áreas abertas e ambientes rurais",
         "alimentacao": "Sementes e pequenos insetos",
-        "curiosidade": "Possui canto forte e melodioso."
+        "curiosidade": "Possui canto forte e melodioso.",
+        "comprimento_cm": 13,
+        "peso_g": 13,
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1
     },
     {
         "codigo": "3",
@@ -177,7 +185,11 @@ catalogo_aves = [
         "dieta_tipo": "Insetívora",
         "habitat": "Campos, cidades e áreas rurais",
         "alimentacao": "Insetos e outros invertebrados",
-        "curiosidade": "Constrói um ninho de barro característico."
+        "curiosidade": "Constrói um ninho de barro característico.",
+        "comprimento_cm": 20,
+        "peso_g": 49,
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1
     },
     {
         "codigo": "4",
@@ -188,7 +200,11 @@ catalogo_aves = [
         "dieta_tipo": "Frugívora",
         "habitat": "Florestas, cerrado e Pantanal",
         "alimentacao": "Frutos, sementes e castanhas",
-        "curiosidade": "É a maior espécie de arara do mundo."
+        "curiosidade": "É a maior espécie de arara do mundo.",
+        "comprimento_cm": 100,
+        "peso_g": 1400,
+        "status_conservacao": "Vulnerável",
+        "indice_conservacao": 3
     },
     {
         "codigo": "5",
@@ -199,29 +215,41 @@ catalogo_aves = [
         "dieta_tipo": "Carnívora",
         "habitat": "Campos abertos e áreas urbanas",
         "alimentacao": "Insetos e pequenos vertebrados",
-        "curiosidade": "Vive em buracos no solo e é ativa durante o dia."
+        "curiosidade": "Vive em buracos no solo e é ativa durante o dia.",
+        "comprimento_cm": 24,
+        "peso_g": 180,
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1
     },
     {
-    "codigo": "6",
-    "nome_popular": "Sabiá-laranjeira",
-    "nome_cientifico": "Turdus rufiventris",
-    "ordem": "Passeriformes",
-    "familia": "Turdidae",
-    "dieta_tipo": "Onívora",
-    "habitat": "Florestas, áreas urbanas, jardins e parques",
-    "alimentacao": "Frutas, insetos e pequenos invertebrados",
-    "curiosidade": "É considerado o pássaro símbolo do Brasil."
+        "codigo": "6",
+        "nome_popular": "Sabiá-laranjeira",
+        "nome_cientifico": "Turdus rufiventris",
+        "ordem": "Passeriformes",
+        "familia": "Turdidae",
+        "dieta_tipo": "Onívora",
+        "habitat": "Florestas, áreas urbanas, jardins e parques",
+        "alimentacao": "Frutas, insetos e pequenos invertebrados",
+        "curiosidade": "É considerado o pássaro símbolo do Brasil.",
+        "comprimento_cm": 25,
+        "peso_g": 70,
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1
     },
     {
-    "codigo": "7",
-    "nome_popular": "Tico-tico",
-    "nome_cientifico": "Zonotrichia capensis",
-    "ordem": "Passeriformes",
-    "familia": "Passerellidae",
-    "dieta_tipo": "Granívora",
-    "habitat": "Campos, jardins, áreas abertas e cidades",
-    "alimentacao": "Sementes, insetos e pequenos frutos",
-    "curiosidade": "Muito comum no Brasil e conhecido pelo canto repetitivo."
+        "codigo": "7",
+        "nome_popular": "Tico-tico",
+        "nome_cientifico": "Zonotrichia capensis",
+        "ordem": "Passeriformes",
+        "familia": "Passerellidae",
+        "dieta_tipo": "Granívora",
+        "habitat": "Campos, jardins, áreas abertas e cidades",
+        "alimentacao": "Sementes, insetos e pequenos frutos",
+        "curiosidade": "Muito comum no Brasil e conhecido pelo canto repetitivo.",
+        "comprimento_cm": 15,
+        "peso_g": 24,
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1
     }
 
 ]
