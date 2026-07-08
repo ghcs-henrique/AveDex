@@ -60,6 +60,17 @@ def normalizar_texto(texto):
     return texto
 
 
+# 🆕 ETAPA 2 — VALORES AUSENTES
+def valor_ou_indisponivel(valor, unidade=""):
+    if valor is None or valor == "":
+        return "Não informado"
+
+    if unidade != "":
+        return f"{valor} {unidade}"
+
+    return str(valor)
+
+
 def buscar_aves(catalogo, termo_busca):
     resultados = []
     termo = normalizar_texto(termo_busca)
@@ -125,6 +136,7 @@ def exibir_detalhes(ave):
     exibir_linha()
     print("DETALHES DA AVE")
     exibir_linha()
+
     print(f"Nome popular: {ave['nome_popular']}")
     print(f"Nome científico: {ave['nome_cientifico']}")
     print(f"Ordem: {ave.get('ordem', 'N/A')}")
@@ -133,6 +145,12 @@ def exibir_detalhes(ave):
     print(f"Habitat: {ave['habitat']}")
     print(f"Alimentação: {ave['alimentacao']}")
     print(f"Curiosidade: {ave['curiosidade']}")
+
+    # 🆕 ETAPA 2 aplicada aqui
+    print(f"Comprimento (cm): {valor_ou_indisponivel(ave.get('comprimento_cm'), 'cm')}")
+    print(f"Peso (g): {valor_ou_indisponivel(ave.get('peso_g'), 'g')}")
+    print(f"Status de conservação: {valor_ou_indisponivel(ave.get('status_conservacao'))}")
+    print(f"Índice de conservação: {valor_ou_indisponivel(ave.get('indice_conservacao'))}")
 
 
 def mostrar_sobre():
@@ -251,7 +269,6 @@ catalogo_aves = [
         "status_conservacao": "Pouco preocupante",
         "indice_conservacao": 1
     }
-
 ]
 
 print("=" * 50)
@@ -284,7 +301,7 @@ while opcao_menu != "0":
         print(f"Até logo, {nome_usuario}!")
 
     else:
-        print("Opção inválida. Digite apenas 0, 1, 2, 3 ou 4.")
+        print("Opção inválida.")
 
     if opcao_menu != "0":
         pausar()
