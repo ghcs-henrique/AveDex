@@ -10,11 +10,10 @@ def exibir_menu():
     exibir_linha()
     print("AVEDEX - MENU PRINCIPAL")
     exibir_linha()
-    print("1 - Ver mensagem de boas-vindas")
-    print("2 - Listar aves")
-    print("3 - Ver detalhes de uma ave (por código)")
-    print("4 - Buscar aves")
-    print("5 - Sobre a AveDex")
+    print("1 - Listar aves")
+    print("2 - Buscar ave")
+    print("3 - Ver detalhes de uma ave")
+    print("4 - Sobre a AveDex")
     print("0 - Sair")
 
 
@@ -40,8 +39,19 @@ def buscar_ave_por_codigo(catalogo, codigo_procurado):
     return None
 
 
+def selecionar_ave_por_id(catalogo_aves):
+    codigo = input("Digite o código da ave: ").strip()
+    ave = buscar_ave_por_codigo(catalogo_aves, codigo)
+
+    if ave:
+        exibir_detalhes(ave)
+    else:
+        print("Ave não encontrada.")
+
+
 def normalizar_texto(texto):
-    texto = str(texto).lower().strip()
+    texto = str(texto)
+    texto = texto.lower().strip()
     texto = unicodedata.normalize("NFD", texto)
     texto = "".join(
         c for c in texto
@@ -55,7 +65,6 @@ def buscar_aves(catalogo, termo_busca):
     termo = normalizar_texto(termo_busca)
 
     for ave in catalogo:
-
         campos_busca = [
             ave.get("nome_popular", ""),
             ave.get("nome_cientifico", ""),
@@ -208,26 +217,15 @@ while opcao_menu != "0":
     print()
 
     if opcao_menu == "1":
-        mostrar_boas_vindas(nome_usuario)
+        listar_aves(catalogo_aves)
 
     elif opcao_menu == "2":
-        listar_aves(catalogo_aves)
-
-    elif opcao_menu == "3":
-        listar_aves(catalogo_aves)
-
-        codigo = input("\nDigite o código da ave: ").strip()
-        ave = buscar_ave_por_codigo(catalogo_aves, codigo)
-
-        if ave:
-            exibir_detalhes(ave)
-        else:
-            print("Ave não encontrada.")
-
-    elif opcao_menu == "4":
         tela_busca(catalogo_aves)
 
-    elif opcao_menu == "5":
+    elif opcao_menu == "3":
+        selecionar_ave_por_id(catalogo_aves)
+
+    elif opcao_menu == "4":
         mostrar_sobre()
 
     elif opcao_menu == "0":
@@ -235,7 +233,7 @@ while opcao_menu != "0":
         print(f"Até logo, {nome_usuario}!")
 
     else:
-        print("Opção inválida.")
+        print("Opção inválida. Digite apenas 0, 1, 2, 3 ou 4.")
 
     if opcao_menu != "0":
         pausar()
