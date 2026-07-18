@@ -133,7 +133,6 @@ def selecionar_ave_por_id(catalogo):
 
 
 def criar_texto_busca(ave):
-    """Monta o texto que será usado na busca."""
     valores = []
     for campo in CAMPOS_BUSCA:
         valores.append(str(ave.get(campo, "")))
@@ -142,7 +141,6 @@ def criar_texto_busca(ave):
 
 
 def buscar_aves(catalogo, termo_busca):
-    """Busca aves cujo texto contenha o termo digitado."""
     resultados = []
     termo = normalizar_texto(termo_busca)
     for ave in catalogo:
