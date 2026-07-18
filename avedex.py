@@ -45,7 +45,6 @@ def mensagem_aviso(texto):
 
 
 def normalizar_texto(texto):
-    """Converte para texto, padroniza e remove acentos."""
     texto = str(texto)
     texto = texto.lower().strip()
     texto = unicodedata.normalize("NFD", texto)
@@ -56,12 +55,10 @@ def normalizar_texto(texto):
 
 
 def pausar():
-    """Pausa a execução para o usuário conseguir ler a tela."""
     input("\nPressione ENTER para voltar ao menu...")
 
 
 def valor_ou_indisponivel(valor, unidade=""):
-    """Retorna uma string legível para valores ausentes ou com unidade."""
     if valor is None or valor == "":
         return "Não informado"
     if unidade != "":
@@ -85,14 +82,12 @@ def exibir_menu():
 
 
 def listar_aves(catalogo):
-    """Lista todas as aves cadastradas."""
     titulo("AVES CADASTRADAS")
     for ave in catalogo:
         print(f"{ave['id']} - {ave['nome_popular']}")
 
 
 def buscar_ave_por_id(catalogo, id_procurado):
-    """Procura uma ave pelo ID."""
     for ave in catalogo:
         if str(ave["id"]) == id_procurado:
             return ave
@@ -100,7 +95,6 @@ def buscar_ave_por_id(catalogo, id_procurado):
 
 
 def exibir_detalhes_ave(ave):
-    """Exibe informações detalhadas de uma ave."""
     titulo("DETALHES DA AVE")
     print(f"ID: {ave['id']}")
     print(f"Nome popular: {ave['nome_popular']}")
@@ -122,7 +116,6 @@ def exibir_detalhes_ave(ave):
 
 
 def selecionar_ave_por_id(catalogo):
-    """Permite ao usuário escolher uma ave pelo ID."""
     listar_aves(catalogo)
     id_escolhido = input("\nDigite o ID da ave: ").strip()
     ave_encontrada = buscar_ave_por_id(catalogo, id_escolhido)
@@ -151,7 +144,6 @@ def buscar_aves(catalogo, termo_busca):
 
 
 def exibir_resultados_busca(resultados):
-    """Exibe a lista de resultados da busca."""
     titulo("RESULTADOS DA BUSCA")
     if len(resultados) == 0:
         mensagem_aviso("Nenhuma ave encontrada.")
@@ -164,7 +156,6 @@ def exibir_resultados_busca(resultados):
 
 
 def tela_busca(catalogo):
-    """Tela completa de busca textual."""
     termo = input("Digite parte do nome, família, ordem ou dieta: ").strip()
     if termo == "":
         mensagem_aviso("Digite algum texto para realizar a busca.")
@@ -182,7 +173,6 @@ def tela_busca(catalogo):
 
 
 def imprimir_linha_comparacao(rotulo, valor_1, valor_2):
-    """Imprime uma linha alinhada com rótulo e dois valores."""
     print(f"{rotulo:<18} | {str(valor_1):<25} | {str(valor_2):<25}")
 
 
