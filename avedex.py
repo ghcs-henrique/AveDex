@@ -79,7 +79,6 @@ def cortar_texto(texto, tamanho=25):
 
 
 def exibir_menu():
-    """Exibe o menu principal com base na lista OPCOES_MENU."""
     titulo("AVEDEX - MENU PRINCIPAL")
     for opcao in OPCOES_MENU:
         print(opcao)
