@@ -30,12 +30,10 @@ CAMPOS_COMPARACAO = [
 
 
 def linha(caractere="=", largura=LARGURA_TELA):
-    """Retorna uma linha com o caractere repetido."""
     return caractere * largura
 
 
 def titulo(texto):
-    """Exibe um título padronizado."""
     print()
     print(linha("="))
     print(texto)
@@ -43,7 +41,6 @@ def titulo(texto):
 
 
 def mensagem_aviso(texto):
-    """Exibe uma mensagem de aviso."""
     print(f"[AVISO] {texto}")
 
 
