@@ -1,4 +1,4 @@
-import unicodedata # Tive um problema com a troca de sistemas... Acabei tendo que pegar o código que vc disponibilizou...
+import unicodedata 
 
 LARGURA_TELA = 78
 OPCOES_MENU = [
