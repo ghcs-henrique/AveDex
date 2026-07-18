@@ -1,4 +1,4 @@
-import unicodedata #teste
+import unicodedata
 
 
 def exibir_linha():
