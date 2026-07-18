@@ -187,7 +187,6 @@ def imprimir_linha_comparacao(rotulo, valor_1, valor_2):
 
 
 def preparar_valor_comparacao(ave, campo, unidade):
-    """Busca o valor original da ave e faz ajustes para exibição."""
     valor = ave.get(campo)
     if campo == "habitat":
         return cortar_texto(valor, 25)
