@@ -1,7 +1,7 @@
 import unicodedata
 
 
-def exibir_linha():
+def exibir_linha(): # Arquivo antes da refatoração!
     print("=" * 50)
 
 
